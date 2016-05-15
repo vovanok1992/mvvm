@@ -5,5 +5,6 @@ package t2;
  */
 public interface Changeable {
     ChangeCallback getCallback();
+
     void setModel(ObservableModel model);
 }

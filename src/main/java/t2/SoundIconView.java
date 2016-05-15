@@ -10,7 +10,7 @@ public class SoundIconView implements Changeable {
     boolean checked;
     String name;
 
-    public SoundIconView(String name){
+    public SoundIconView(String name) {
         this.name = name;
     }
 
@@ -18,14 +18,14 @@ public class SoundIconView implements Changeable {
     public ChangeCallback getCallback() {
         return model1 -> {
             boolean newState = ((Integer) model1.get("sound")) > 0;
-            if(newState != checked){
+            if (newState != checked) {
                 checked = newState;
                 updateView();
             }
         };
     }
 
-    void updateView(){
+    void updateView() {
         System.out.println(">>> CHECKBOX " + name + " state is now " + checked);
     }
 

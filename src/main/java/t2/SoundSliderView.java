@@ -3,7 +3,7 @@ package t2;
 /**
  * Created by vovan_000 on 15.05.2016.
  */
-public class SoundSliderView implements Changeable{
+public class SoundSliderView implements Changeable {
 
     ObservableModel observableModel;
 
@@ -11,15 +11,15 @@ public class SoundSliderView implements Changeable{
     int soundLevel;
 
 
-    public SoundSliderView(String name){
+    public SoundSliderView(String name) {
         this.name = name;
     }
 
-    public void updateView(){
+    public void updateView() {
         System.out.println(">>> UPDATING " + name + " to value " + soundLevel);
     }
 
-    public void setValue(int value){
+    public void setValue(int value) {
         System.out.println("<<< " + name + " is changed value to " + value);
         this.soundLevel = value;
         observableModel.set("sound", value, false);
@@ -29,7 +29,7 @@ public class SoundSliderView implements Changeable{
     public ChangeCallback getCallback() {
         return model -> {
             Integer value = (Integer) model.get("sound");
-            if(value != soundLevel){
+            if (value != soundLevel) {
                 soundLevel = value;
                 updateView();
             }
