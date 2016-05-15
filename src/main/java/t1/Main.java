@@ -1,3 +1,5 @@
+package t1;
+
 public class Main {
 
     static SoundIconView soundIconView = new SoundIconView("icon1");

@@ -1,3 +1,5 @@
+package t1;
+
 /**
  * Created by vovan_000 on 14.05.2016.
  */
