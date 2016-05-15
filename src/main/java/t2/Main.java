@@ -4,6 +4,9 @@ package t2;
  * Created by vovan_000 on 15.05.2016.
  */
 public class Main {
+
+    static final String SOUND_KEY = "sound";
+
     public static void main(String[] args) {
         ObservableModel observableModel = new ObservableModel();
 
@@ -14,11 +17,11 @@ public class Main {
         SoundIconView soundIconView2 = new SoundIconView("checkbox2");
 
 
-        observableModel.bind(soundSliderView);
-        observableModel.bind(soundSliderView2);
-        observableModel.bind(soundSliderView3);
-        observableModel.bind(soundIconView);
-        observableModel.bind(soundIconView2);
+        observableModel.bind(SOUND_KEY, soundSliderView);
+        observableModel.bind(SOUND_KEY, soundSliderView2);
+        observableModel.bind(SOUND_KEY, soundSliderView3);
+        observableModel.bind(SOUND_KEY, soundIconView);
+        observableModel.bind(SOUND_KEY, soundIconView2);
 
 
         soundSliderView.setValue(10);

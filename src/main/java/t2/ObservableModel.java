@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class ObservableModel {
 
-    private Set<ChangeCallback> listeners = new HashSet<>();
+    private Map<String, Set<ChangeCallback>> listeners = new HashMap<>();
 
     private Map<String, Object> storage = new HashMap<>();
 
@@ -15,12 +15,13 @@ public class ObservableModel {
     public void set(String key, Object val, boolean silent){
         storage.put(key, val);
         if(!silent){
-            notifyAllListeners();
+            notifyListeners(key);
         }
     }
 
-    public void notifyAllListeners(){
-        for(ChangeCallback changeCallback: listeners){
+    public void notifyListeners(String key){
+        Set<ChangeCallback> callbacks = listeners.get(key);
+        for(ChangeCallback changeCallback: callbacks){
             changeCallback.onChange(this);
         }
     }
@@ -29,12 +30,15 @@ public class ObservableModel {
         return storage.get(key);
     }
 
-    public void on(ChangeCallback changeCallback){
-        listeners.add(changeCallback);
+    public void on(String key, ChangeCallback changeCallback){
+        if(!listeners.containsKey(key)){
+            listeners.put(key, new HashSet<>());
+        }
+        listeners.get(key).add(changeCallback);
     }
 
-    public void bind(Changeable changeable){
-        on(changeable.getCallback());
+    public void bind(String key, Changeable changeable){
+        on(key, changeable.getCallback());
         changeable.setModel(this);
     }
 
